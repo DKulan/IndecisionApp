@@ -13,7 +13,7 @@ class IndecisionApp extends React.Component {
     }
 
     handleDeleteOptions = () => {
-        this.setState(() => ({ options: [] }))
+        this.setState(() => ({options: []}))
     }
 
     handleDeleteOption = optionToRemove => {
@@ -39,7 +39,7 @@ class IndecisionApp extends React.Component {
             return 'Option already exists'
         }
 
-        this.setState(prevState => ({ options: prevState.options.concat(option)}))
+        this.setState(prevState => ({options: prevState.options.concat(option)}))
     }
 
     handleModalClose = () => {
@@ -72,18 +72,22 @@ class IndecisionApp extends React.Component {
                 <Header
                     subtitle={subtitle}
                 />
-                <Action
-                    hasOptions={this.state.options.length > 0}
-                    handlePick={this.handlePick}
-                />
-                <Options
-                    options={this.state.options}
-                    handleDeleteOption={this.handleDeleteOption}
-                    handleDeleteOptions={this.handleDeleteOptions}
-                />
-                <AddOption
-                    handleAddOption={this.handleAddOption}
-                />
+                <div className="container">
+                    <Action
+                        hasOptions={this.state.options.length > 0}
+                        handlePick={this.handlePick}
+                    />
+                    <div className="widget">
+                        <Options
+                            options={this.state.options}
+                            handleDeleteOption={this.handleDeleteOption}
+                            handleDeleteOptions={this.handleDeleteOptions}
+                        />
+                        <AddOption
+                            handleAddOption={this.handleAddOption}
+                        />
+                    </div>
+                </div>
                 <OptionModal
                     selectedOption={this.state.selectedOption}
                     handleModalClose={this.handleModalClose}
